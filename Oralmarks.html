@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="kn">
 <head>
@@ -136,7 +137,7 @@
             margin-left: 6px;
         }
 
-        /* ಮುಖ್ಯ ಮಾರ್ಕ್ಸ್ ಟೇಬಲ್ */
+        /* ಮಾರ್ಕ್ಸ್ ಟೇಬಲ್ */
         .marks-table {
             width: 100%;
             border-collapse: collapse;
@@ -207,6 +208,7 @@
             padding-top: 6px;
         }
 
+        /* ಪ್ರಿಂಟ್ ಸೆಟ್ಟಿಂಗ್ಸ್: ಇಲ್ಲಿ ರಚನೆ ಸಾಲು ಪ್ರಿಂಟ್ ಆಗದಂತೆ ತಡೆಯಲಾಗಿದೆ */
         @media print {
             @page {
                 size: A4 portrait;
@@ -218,7 +220,7 @@
                 padding: 0;
             }
 
-            .toolbar, .action-btns {
+            .toolbar, .action-btns, .credit-line {
                 display: none !important;
             }
 
@@ -290,9 +292,7 @@
                     <th style="width: 5.5%;">10</th>
                 </tr>
             </thead>
-            <tbody id="studentBody">
-                <!-- 58 ವಿದ್ಯಾರ್ಥಿಗಳ ಪಟ್ಟಿ -->
-            </tbody>
+            <tbody id="studentBody"></tbody>
         </table>
 
         <div class="action-btns">
@@ -312,7 +312,6 @@
     </div>
 
     <script>
-        // PDF ನಲ್ಲಿದ್ದ 58 ವಿದ್ಯಾರ್ಥಿಗಳ ಹೆಸರುಗಳು
         const studentNames = [
             "M MOHAN", "ADITYA R", "AMRUTHA", "ANANDA Y", "ANKITHA VENKATESHA BANDARI",
             "ANUSHA A", "BHARATH N", "BHUVAN B S", "CHIRARANJIVI BHARAMARAJ SHEEGIH",
@@ -331,7 +330,6 @@
 
         const tbody = document.getElementById("studentBody");
 
-        // ಕೋಷ್ಟಕವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತುಂಬುವುದು
         studentNames.forEach((name, index) => {
             createRow(index + 1, name);
         });
@@ -353,7 +351,6 @@
             tbody.appendChild(tr);
         }
 
-        // ಅಂಕಗಳ ಮೊತ್ತ ತಾನಾಗಿಯೇ ಲೆಕ್ಕವಾಗುವ ಫಂಕ್ಷನ್
         function calcTotal(inputElement) {
             const row = inputElement.closest('tr');
             const markInputs = row.querySelectorAll('.q-mark');
@@ -369,13 +366,11 @@
             row.querySelector('.total-cell').textContent = total;
         }
 
-        // ಹೊಸ ಸಾಲು ಸೇರಿಸಲು
         function addStudentRow() {
             const rowCount = tbody.rows.length + 1;
             createRow(rowCount, "");
         }
 
-        // ಕೊನೆಯ ಸಾಲು ತೆಗೆಯಲು
         function deleteStudentRow() {
             if (tbody.rows.length > 1) {
                 tbody.deleteRow(tbody.rows.length - 1);
