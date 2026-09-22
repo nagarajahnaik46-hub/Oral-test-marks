@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ಮೌಖಿಕ ಪರೀಕ್ಷಾ ಅಂಕಪಟ್ಟಿ / Oral Marks List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Noto Sans Kannada', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .toolbar {
+            width: 100%;
+            max-width: 950px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: #0f4c81;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .btn-add {
+            background-color: #d97706;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-del {
+            background-color: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .sheet-container {
+            width: 100%;
+            max-width: 950px;
+            background: #ffffff;
+            border: 2px solid #1e293b;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .header-area {
+            text-align: center;
+            border-bottom: 2px solid #0f4c81;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .header-area input {
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: center;
+            background: transparent;
+            font-weight: 700;
+        }
+
+        .school-name {
+            font-size: 18px;
+            color: #0f4c81;
+            margin-bottom: 4px;
+        }
+
+        .exam-title {
+            font-size: 15px;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 8px;
+            padding: 0 10px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .meta-item input {
+            border: 1px dashed #cbd5e1;
+            padding: 3px 6px;
+            font-size: 13px;
+            border-radius: 3px;
+            outline: none;
+            background: #f8fafc;
+            margin-left: 6px;
+        }
+
+        /* ಮುಖ್ಯ ಮಾರ್ಕ್ಸ್ ಟೇಬಲ್ */
+        .marks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .marks-table th, .marks-table td {
+            border: 1px solid #64748b;
+            padding: 4px 2px;
+            text-align: center;
+            font-size: 11.5px;
+        }
+
+        .marks-table th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .name-col-cell input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 11px;
+            font-weight: 500;
+            padding-left: 5px;
+            text-align: left;
+        }
+
+        .q-mark {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            text-align: center;
+            font-size: 11.5px;
+        }
+
+        .total-cell {
+            background-color: #f8fafc;
+            font-weight: bold;
+            color: #0f4c81;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 0 30px;
+        }
+
+        .sig-block {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            border-top: 1px solid #475569;
+            padding-top: 5px;
+            width: 190px;
+        }
+
+        .credit-line {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 6px;
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 6mm;
+            }
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .toolbar, .action-btns {
+                display: none !important;
+            }
+
+            .sheet-container {
+                border: 1.5px solid #000;
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .marks-table th {
+                background-color: #e2e8f0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .total-cell {
+                background-color: #f1f5f9 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+
+    <div class="sheet-container">
+        
+        <div class="header-area">
+            <input type="text" class="school-name" value="ಸರ್ಕಾರಿ ಹಿರಿಯ ಪ್ರಾಥಮಿಕ ಶಾಲೆ ಆವರಗೆರೆ, ದಾವಣಗೆರೆ ಉತ್ತರ ವಲಯ">
+            <input type="text" class="exam-title" value="ಮೌಖಿಕ ಪರೀಕ್ಷಾ ಅಂಕಪಟ್ಟಿ (Oral Examination Marks List)">
+            
+            <div class="meta-row">
+                <div class="meta-item">
+                    ತರಗತಿ: <input type="text" value="6ನೇ ತರಗತಿ" style="width: 100px;">
+                </div>
+                <div class="meta-item">
+                    ವಿಷಯ: <input type="text" placeholder="ವಿಷಯ ಬರೆಯಿರಿ..." style="width: 140px;">
+                </div>
+                <div class="meta-item">
+                    ದಿನಾಂಕ: <input type="text" value="22/09/2026" style="width: 110px;">
+                </div>
+            </div>
+        </div>
+
+        <table class="marks-table" id="oralTable">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="width: 4%;">ಕ್ರ. ಸಂ.</th>
+                    <th rowspan="2" style="width: 32%;">ವಿದ್ಯಾರ್ಥಿಗಳ ಹೆಸರು</th>
+                    <th colspan="10">ಪ್ರಶ್ನೆಗಳ ಸಂಖ್ಯೆ</th>
+                    <th rowspan="2" style="width: 7%;">Total marks</th>
+                </tr>
+                <tr>
+                    <th style="width: 5.5%;">1</th>
+                    <th style="width: 5.5%;">2</th>
+                    <th style="width: 5.5%;">3</th>
+                    <th style="width: 5.5%;">4</th>
+                    <th style="width: 5.5%;">5</th>
+                    <th style="width: 5.5%;">6</th>
+                    <th style="width: 5.5%;">7</th>
+                    <th style="width: 5.5%;">8</th>
+                    <th style="width: 5.5%;">9</th>
+                    <th style="width: 5.5%;">10</th>
+                </tr>
+            </thead>
+            <tbody id="studentBody">
+                <!-- 58 ವಿದ್ಯಾರ್ಥಿಗಳ ಪಟ್ಟಿ -->
+            </tbody>
+        </table>
+
+        <div class="action-btns">
+            <button class="btn-add" onclick="addStudentRow()">+ ಸಾಲು ಸೇರಿಸಿ (Add Student)</button>
+            <button class="btn-del" onclick="deleteStudentRow()">- ಸಾಲು ತೆಗೆಯಿರಿ (Delete Row)</button>
+        </div>
+
+        <div class="signatures">
+            <div class="sig-block">ವಿಷಯ ಶಿಕ್ಷಕರ ಸಹಿ</div>
+            <div class="sig-block">ಮುಖ್ಯೋಪಾಧ್ಯಾಯರ ಸಹಿ</div>
+        </div>
+
+        <div class="credit-line">
+            ರಚನೆ: ನಾಗರಾಜ್ ಹೆಚ್ GPT ಆವರಗೆರೆ
+        </div>
+
+    </div>
+
+    <script>
+        // PDF ನಲ್ಲಿದ್ದ 58 ವಿದ್ಯಾರ್ಥಿಗಳ ಹೆಸರುಗಳು
+        const studentNames = [
+            "M MOHAN", "ADITYA R", "AMRUTHA", "ANANDA Y", "ANKITHA VENKATESHA BANDARI",
+            "ANUSHA A", "BHARATH N", "BHUVAN B S", "CHIRARANJIVI BHARAMARAJ SHEEGIH",
+            "CHIRU M", "DEEKSHA", "DEEKSHA N", "DEEKSHA NA", "DHANUSH N",
+            "DYAVANNA JAMBANNA VIBHOTI", "GAJAPURADA PAVANA KUMAR", "GANESH NAIK S",
+            "GANESHA", "GANESHA D", "GOUTHAMI H", "HEMANTH KUMAR P L", "HIMA",
+            "JEEVITHA S", "KARTHIK H", "KIRAN V", "LAVANYA H M", "LAVANYA N",
+            "M H MARUTHI", "MANOJA M", "MOHANKUMAR G D", "MUHAMMAD ULLA KHAN",
+            "N MALATHESH", "NIVEDITHA S H", "P PRATHAP", "POORNIMA M", "PRARTHANA A",
+            "PRARTHANA M K", "PREETHAM", "PRUTHVI PARASAPPA BANKAPUR", "RACHANA",
+            "RAHUL N", "RAHUL NAIK", "RAMESH M", "SACHINKUMAR M", "SAHANA",
+            "SAMARTH ANJANEYA MAGOD", "SAMARTH R", "SANGEETHA H S", "SANJANA H",
+            "SANNIDHI B G", "SHWEETHA C", "TANUSHREE", "TASMIYA BANU", "THEJASH T",
+            "UDAYKUMAR L", "VACHANA M", "VEDHA S", "YASHVANTH NAIK"
+        ];
+
+        const tbody = document.getElementById("studentBody");
+
+        // ಕೋಷ್ಟಕವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತುಂಬುವುದು
+        studentNames.forEach((name, index) => {
+            createRow(index + 1, name);
+        });
+
+        function createRow(slNo, name = "") {
+            const tr = document.createElement("tr");
+            
+            let qInputs = "";
+            for (let i = 1; i <= 10; i++) {
+                qInputs += `<td><input type="number" min="0" max="10" class="q-mark" oninput="calcTotal(this)"></td>`;
+            }
+
+            tr.innerHTML = `
+                <td>${slNo}</td>
+                <td class="name-col-cell"><input type="text" value="${name}" placeholder="ವಿದ್ಯಾರ್ಥಿ ಹೆಸರು..."></td>
+                ${qInputs}
+                <td class="total-cell">0</td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        // ಅಂಕಗಳ ಮೊತ್ತ ತಾನಾಗಿಯೇ ಲೆಕ್ಕವಾಗುವ ಫಂಕ್ಷನ್
+        function calcTotal(inputElement) {
+            const row = inputElement.closest('tr');
+            const markInputs = row.querySelectorAll('.q-mark');
+            let total = 0;
+
+            markInputs.forEach(input => {
+                const val = parseFloat(input.value);
+                if (!isNaN(val)) {
+                    total += val;
+                }
+            });
+
+            row.querySelector('.total-cell').textContent = total;
+        }
+
+        // ಹೊಸ ಸಾಲು ಸೇರಿಸಲು
+        function addStudentRow() {
+            const rowCount = tbody.rows.length + 1;
+            createRow(rowCount, "");
+        }
+
+        // ಕೊನೆಯ ಸಾಲು ತೆಗೆಯಲು
+        function deleteStudentRow() {
+            if (tbody.rows.length > 1) {
+                tbody.deleteRow(tbody.rows.length - 1);
+            } else {
+                alert("ಕನಿಷ್ಠ ಒಂದು ಸಾಲು ಇರಲೇಬೇಕು!");
+            }
+        }
+    </script>
+</body>
+</html>
